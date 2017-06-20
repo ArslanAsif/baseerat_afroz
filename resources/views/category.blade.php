@@ -24,7 +24,7 @@
                         @endif
                         <div class="{{isset($search) ? 'col-md-4' : 'col-md-6'}}">
                             <div class="post-wrap">
-                                <article class="post">
+                                <article class="post" dir="auto">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <a><img src="{{url('images/articles/'.$article->picture)}}" alt="img"></a>
@@ -34,7 +34,7 @@
                                             <div class="cat">
                                                 <a>{{\Carbon\Carbon::parse($article->publish_date)->format('M d, Y')}}</a>
                                             </div>
-                                            <p class="excerpt-entry">I think your best bet would be to start or join a startup. That's been a reliable way to get rich for hundreds of years.</p>
+                                            <p class="excerpt-entry">{{$article->summary}}</p>
                                             <div class="activity">
                                                 <span class="views"> <a href="{{url('/article/'.$article->id)}}">Read More</a></span>
                                             </div>
@@ -65,10 +65,15 @@
                                         <div class="thumb">
                                             <a href="{{url('article/'.$article->id)}}"><img src="{{ url('images/articles/'.$article->picture) }}" alt="img"></a>
                                         </div>
-                                        <div class="content">
-                                            <h3><a href="{{url('article/'.$article->id)}}">{{$article->title}}</a></h3>
-                                            <div class="date">{{\Carbon\Carbon::parse($article->publish_date)->format('M d, Y')}}</div>
-                                        </div>
+                                            @if(preg_match("/[ط|ص|ھ|د|ٹ|پ|ت|ب|ج|ح|م|و|ر|ن|ل|ہ|ا|ک|ی|ق|ف|ے|س|ش|غ|ع]+/", $article->title))
+                                            <div class="content" style="text-align: right">
+                                            @else
+                                            <div class="content">
+                                            @endif
+                                                <h3><a href="{{url('article/'.$article->id)}}">{{$article->title}}</a></h3>
+                                                <div class="date">{{\Carbon\Carbon::parse($article->publish_date)->format('M d, Y')}}</div>
+                                            </div>
+
                                     </li>
                                 @endforeach
                             </ul>

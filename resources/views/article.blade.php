@@ -12,18 +12,30 @@
                                 <li class="active"><a href="#">Popular</a></li>
                                 <li><a href="#">Latest</a></li>
                             </ul><!-- /.menu-tab -->
-                            <div class="content-tab scroll">
+                            <div class="content-tab">
                                 <div class="content">
                                     <ul class="content-list">
                                         @foreach($popular_articles as $article)
-                                            <li><a href="{{url('article/'.$article->id)}}">{{$article->title}}</a></li>
+                                            @if(preg_match("/[ط|ص|ھ|د|ٹ|پ|ت|ب|ج|ح|م|و|ر|ن|ل|ہ|ا|ک|ی|ق|ف|ے|س|ش|غ|ع]+/", $article->title))
+                                            <li style="text-align: right">
+                                            @else
+                                            <li>
+                                            @endif
+                                                <a href="{{url('article/'.$article->id)}}">{{$article->title}}</a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </div><!-- /.content-list -->
-                                <div class="content">
+                                <div class="content" style="text-align: center">
                                     <ul class="content-list">
                                         @foreach($recent_articles as $article)
-                                            <li><a href="{{url('article/'.$article->id)}}">{{$article->title}}</a></li>
+                                            @if((preg_match("/[ط|ص|ھ|د|ٹ|پ|ت|ب|ج|ح|م|و|ر|ن|ل|ہ|ا|ک|ی|ق|ف|ے|س|ش|غ|ع]+/", $article->title)))
+                                            <li style="text-align: right">
+                                            @else
+                                                <li>
+                                            @endif
+                                                <a href="{{url('article/'.$article->id)}}">{{$article->title}}</a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </div><!-- /.comments -->
@@ -34,8 +46,8 @@
                 </div><!-- /.col-md-4 -->
                 <div class="col-md-8">
                     <div class="post-wrap posts posts-list">
-                        <article class="post">
-                            <div class="head-post">
+                        <article class="post" dir="auto">
+                            <div class="head-post" >
                                 <h2><a href="#">{{$this_article->title}}</a></h2>
                                 <p>{{$this_article->summary}}</p>
                                 <div class="meta">

@@ -9,7 +9,8 @@
                 <div class="featured-posts gn-animation" data-animation="fadeInUp" data-animation-delay="0" data-animation-offset="75%">
                     <div class="content-left">
                         @if(isset($spotlights[0]))
-                        <article class="post">
+                        <article class="post" dir="auto">
+                            <p hidden>{{$spotlights[0]->article->title}}</p>
                             <div class="thumb">
                                 <a href="{{url('article/'.$spotlights[0]->article_id)}}"><img src="{{url('images/articles/'.$spotlights[0]->article->picture)}}" alt="img"></a>
                             </div>
@@ -31,7 +32,8 @@
                         <?php $first = 1;?>
                         @foreach($spotlights as $spotlight)
                         @if($first++ != 1)
-                        <article class="post">
+                        <article class="post" dir="auto">
+                            <p hidden>{{$spotlight->article->title}}</p>
                             <div class="thumb">
                                 <a href="{{url('article/'.$spotlight->article_id)}}"><img src="{{url('images/articles/'.$spotlight->article->picture)}}" alt="img"></a>
                             </div>
@@ -39,6 +41,7 @@
                                 <a href="{{url('category/'.$spotlight->article->category_id)}}">{{$spotlight->article->category->title_eng}}</a>
                             </div>
                             <h3><a href="{{url('article/'.$spotlight->article_id)}}">{{$spotlight->article->title}}</a></h3>
+
                             {{--<div class="activity">--}}
                                 {{--<span class="views">12</span><span class="comment"><a href="#">15</a></span>--}}
                             {{--</div>--}}
@@ -55,10 +58,11 @@
                     <?php $x = 1 ?>
                     @foreach($highlights as $highlight)
                     @if($x % 2 == 0)
-                        <article class="post last">
+                        <article class="post last" dir="auto">
                     @else
-                        <article class="post">
+                        <article class="post" dir="auto">
                     @endif
+                            <p hidden>{{ $highlight->article->title }}</p>
                             <div class="thumb">
                                 <a href="{{url('article/'.$highlight->article_id)}}"><img src="{{url('images/articles/'.$highlight->article->picture)}}" alt="img"></a>
                             </div>
@@ -86,10 +90,15 @@
                                 <div class="thumb">
                                     <a href="{{url('article/'.$article->id)}}"><img src="{{ url('images/articles/'.$article->picture) }}" alt="img"></a>
                                 </div>
-                                <div class="content">
+                                @if(preg_match("/[ط|ص|ھ|د|ٹ|پ|ت|ب|ج|ح|م|و|ر|ن|ل|ہ|ا|ک|ی|ق|ف|ے|س|ش|غ|ع]+/", $article->title))
+                                    <div class="content" style="text-align: right">
+                                @else
+                                    <div class="content">
+                                @endif
                                     <h3><a href="{{url('article/'.$article->id)}}">{{$article->title}}</a></h3>
                                     <div class="date">{{\Carbon\Carbon::parse($article->publish_date)->format('M d, Y')}}</div>
                                 </div>
+
                             </li>
                             @endforeach
                         </ul>
@@ -100,7 +109,11 @@
                         <ul>
                             <?php $i=0 ?>
                             @foreach($popular_articles as $article)
-                            <li>
+                            @if(preg_match("/[ط|ص|ھ|د|ٹ|پ|ت|ب|ج|ح|م|و|ر|ن|ل|ہ|ا|ک|ی|ق|ف|ے|س|ش|غ|ع]+/", $article->title))
+                                <li style="text-align: right">
+                            @else
+                                <li>
+                            @endif
                                 <div class="order">{{++$i}}</div>
                                 <p><a href="{{url('article/'.$article->id)}}">{{$article->title}}</a></p>
                             </li>
@@ -155,7 +168,8 @@
                     </div>
                     <div class="post-wrap">
                         @foreach($editorpicks as $editorpick)
-                        <article class="post">
+                        <article class="post" dir="auto">
+                            <p hidden>{{$editorpick->article->title}}</p>
                             <div class="thumb">
                                 <a href="{{url('article/'.$editorpick->article_id)}}"><img src="{{url('images/articles/'.$editorpick->article->picture)}}" alt="img"></a>
                             </div>
@@ -182,7 +196,8 @@
                     </div>
                     <div class="content-left">
                         @if(isset($popular_articles[0]))
-                        <article class="post">
+                        <article class="post" dir="auto">
+                            <p hidden>{{$popular_articles[0]->title}}</p>
                             <div class="thumb">
                                 <a href="{{url('article/'.$popular_articles[0]->id)}}"><img src="{{url('images/articles/'.$popular_articles[0]->picture)}}" alt="img"></a>
                             </div>
@@ -204,7 +219,8 @@
                         <?php $first_popular = 1; ?>
                         @foreach($popular_articles as $article)
                         @if($first_popular++ != 1)
-                        <article class="post">
+                        <article class="post" dir="auto">
+                            <p hidden>{{$article->title}}</p>
                             <div class="thumb">
                                 <a href="{{url('article/'.$article->id)}}"><img src="{{url('images/articles/'.$article->picture)}}" alt="img"></a>
                             </div>
@@ -233,7 +249,8 @@
 
                         <?php $cat_first = 0;?>
                         @foreach($category->category->articles as $article)
-                        <article class="{{ ($cat_first == 0) ? 'post first':'post' }}">
+                        <article class="{{ ($cat_first == 0) ? 'post first':'post' }}" dir="auto">
+                            <p hidden>{{$article->title}}</p>
                             @if($cat_first == 0)
                             <div class="thumb">
                                 <a href="{{url('article'.$article->id)}}"><img src="{{ url('images/articles/'.$article->picture) }}" alt="img"></a>
