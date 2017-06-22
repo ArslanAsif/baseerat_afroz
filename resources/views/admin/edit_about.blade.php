@@ -17,8 +17,6 @@
                                 <h2>About <small></small></h2>
                             @elseif($check=="terms")
                                 <h2>Terms <small></small></h2>
-                            @elseif($check=="aboutgcc")
-                                <h2>All About GCC <small></small></h2>
                             @endif
 
                             <ul class="nav navbar-right panel_toolbox">
@@ -29,24 +27,9 @@
                         <div class="x_content">
 
                             <form action="{{url('/admin/about/'.$check)}}" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                                @if($check == 'links' && isset($country))
-                                <h2>Country</h2>
-                                <select name="country" class="form-control" onchange="if (this.value) window.location.href='{{ url("/admin/about/links") }}'+'/'+this.value">
-                                    <option {{ $country == 'Saudi Arabia' ? 'selected' : '' }}>Saudi Arabia</option>
-                                    <option {{ $country == 'UAE' ? 'selected' : '' }}>UAE</option>
-                                    <option {{ $country == 'Qatar' ? 'selected' : '' }}>Qatar</option>
-                                    <option {{ $country == 'Kuwait' ? 'selected' : '' }}>Kuwait</option>
-                                    <option {{ $country == 'Bahrain' ? 'selected' : '' }}>Bahrain</option>
-                                    <option {{ $country == 'Oman' ? 'selected' : '' }}>Oman</option>
-                                </select>
-
-                                <br>
-                                <h2>Links</h2>
-                                @endif
-
                                 {{ csrf_field() }}
                                 @include('admin.includes.text_editor')
-                                <div id="editor" class="editor-wrapper"><?= isset($aboutus) ? $aboutus->descr_eng : '' ?></div>
+                                <div dir="auto" id="editor" class="editor-wrapper"><?= isset($aboutus) ? $aboutus->descr_eng : '' ?></div>
                                 <textarea name="descr" id="hidden_descr" style="display:none;"></textarea>
                                 <div class="ln_solid"></div>
                                 <div class="form-group">

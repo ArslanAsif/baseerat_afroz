@@ -33,7 +33,7 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category_ur">Category Name (Urdu)<span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input style="direction: rtl" type="text" id="category_ur" value="{{ isset($cateData) ? $cateData->title_ur : '' }}" name="category_ur" required="required" placeholder="اردو میں قسم کا نام لکھیں" class="form-control col-md-7 col-xs-12">
+                                            <input dir="rtl" type="text" id="category_ur" value="{{ isset($cateData) ? $cateData->title_ur : '' }}" name="category_ur" required="required" placeholder="اردو میں قسم کا نام لکھیں" class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">

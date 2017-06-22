@@ -98,7 +98,6 @@
                                     <h3><a href="{{url('article/'.$article->id)}}">{{$article->title}}</a></h3>
                                     <div class="date">{{\Carbon\Carbon::parse($article->publish_date)->format('M d, Y')}}</div>
                                 </div>
-
                             </li>
                             @endforeach
                         </ul>

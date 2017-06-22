@@ -157,7 +157,7 @@
                     @include('includes.nav')
                 </div><!-- /.col-md-9 -->
                 <div class="col-md-3">
-                    <div class="search-wrap">
+                    <div class="search-wrap" style="margin-top: -15px">
                         <div class="search-icon"></div><!-- //mobile search button -->
                         <form action="{{url('search')}}" id="searchform" class="search-form" method="post" role="search">
                             {{csrf_field()}}

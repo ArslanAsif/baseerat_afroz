@@ -6,11 +6,28 @@
         <div class="container">
             <div class="row">
                 @if(isset($search))
-                    <h2 style="text-align: center; margin-top: -35px; margin-bottom: 10px; font-weight: bold; color: #E8280B">{{'Search result for "'.$search.'"'}}</h2>
+                    <div class="col-sm-12" style="margin-top: -70px;">
+                        <h3 style='text-align: center; padding: 10px; margin-bottom: 10px; border: 1px solid black;'>{{'Search result for "'.$search.'"'}}</h3>
+                    </div>
+                @elseif(isset($user))
+                    <div class="col-sm-12" style='background-image: url("{{url('/images/author_banner.jpg')}}"); background-position: center; background-size: cover;'>
+                        <div style="text-align: center; padding: 10px">
+                            <img src="{{url('images/users/'.$user->avatar)}}" style="border: 1px solid white; border-radius: 100%; width: 120px"; height="auto">
+                            <h3 style="color: white; margin-top: 0px; margin-bottom: 0px">{{$user->name}}</h3>
+                            <p class="col-md-4 col-md-offset-4" style="color: white;">{{$user->editor_descr}}</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12" style="margin-top: -20px;">
+                        <h3 style='text-align: center; padding: 10px; margin-bottom: 10px; border: 1px solid black;'>{{'Articles by "'.$user->name.'"'}}</h3>
+                    </div>
                 @elseif(isset($title))
-                    <h2 style="text-align: center; margin-top: -35px; margin-bottom: 10px; font-weight: bold; color: #E8280B">{{$title}}</h2>
+                    <div class="col-sm-12" style="margin-top: -70px">
+                        <h3 style='text-align: center; padding: 10px; margin-bottom: 10px; border: 1px solid black;'>{{$title}}</h3>
+                    </div>
                 @else
-                    <h2 style="text-align: center; margin-top: -35px; margin-bottom: 10px; font-weight: bold; color: #E8280B">{{$category->title_eng}}</h2>
+                    <div class="col-sm-12" style="margin-top: -70px">
+                        <h3 style='text-align: center; padding: 10px; margin-bottom: 10px; border: 1px solid black;'>{{$category->title_eng}}</h3>
+                    </div>
                 @endif
 
                 <div class="{{isset($search) ? 'col-md-12' : 'col-md-8'}}">
@@ -54,10 +71,10 @@
 
                 </div><!-- /.col-md-8 -->
 
-                @if(isset($category) || isset($title))
+                @if(isset($category) || isset($title) || isset($user))
                 <div class="col-md-4">
                     <div class="sidebar-widget-1">
-                        <div class="widget widget-recent gn-animation" data-animation="fadeInUp" data-animation-delay="0" data-animation-offset="75%">
+                        <div class="widget widget-recent" data-animation="fadeInUp" data-animation-delay="0" data-animation-offset="75%">
                             <h5 class="widget-title">Popular</h5>
                             <ul>
                                 @foreach($popular_articles as $article)

@@ -24,7 +24,7 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Title <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" name="title" id="title" value="{{ isset($news) ? $news->title: (isset($errors) ? old('title') : '') }}" required="required" class="form-control col-md-7 col-xs-12">
+                                        <input dir="auto" type="text" name="title" id="title" value="{{ isset($news) ? $news->title: (isset($errors) ? old('title') : '') }}" required="required" class="form-control col-md-7 col-xs-12">
                                     </div>
                                     <label style="text-align: left" class="control-label col-md-3 col-sm-3 hidden-xs label-ur" for="title"><span class="required">*</span> عنوان
                                     </label>
@@ -47,7 +47,7 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="summary">Summary <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <textarea maxlength="150" id="summary" name="summary" rows="3" required="required" class="form-control col-md-7 col-xs-12">{{ isset($news) ? $news->summary: (isset($errors) ? old('summary') : '') }}</textarea>
+                                        <textarea dir="auto" maxlength="150" id="summary" name="summary" rows="3" required="required" class="form-control col-md-7 col-xs-12">{{ isset($news) ? $news->summary: (isset($errors) ? old('summary') : '') }}</textarea>
                                     </div>
                                     <label style="text-align: left" class="label-ur control-label col-md-3 col-sm-3 hidden-xs" for="summary"><span class="required">*</span> خلاصہ
                                     </label>
@@ -159,7 +159,7 @@
 
                                 <h4>Description <span style="float: right;">تفصیل</span></h4>
                                 @include('admin.includes.text_editor')
-                                <div id="editor" class="editor-wrapper"><?php echo (isset($news) ? $news->description : (isset($errors) ? old('descr') : '')) ?></div>
+                                <div dir="auto" id="editor" class="editor-wrapper"><?php echo (isset($news) ? $news->description : (isset($errors) ? old('descr') : '')) ?></div>
                                 <textarea name="descr" id="hidden_descr" style="display:none;"></textarea>
 
                                 <div class="ln_solid"></div>
@@ -327,7 +327,7 @@
             initToolbarBootstrapBindings();
 
             $('#editor').wysiwyg({
-                fileUploadError: showErrorAlert
+                fileUploadError: showErrorAlert,
             });
 
             window.prettyPrint;

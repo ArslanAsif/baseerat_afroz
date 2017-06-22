@@ -10,7 +10,7 @@
 @import url("mCustomScrollbar.css");		/* Style for Scrollbar Plugin */
 @import url("shortcodes.css");				/* Style for Shortcodes */
 
-/**  
+/**
   * Reset
   * Repeatable Patterns
   * Top
@@ -46,29 +46,29 @@
 	}
 
 	a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, caption, canvas, center, cite, code,
-	dd, del, details, dfn, dialog, div, dl, dt, em, embed, fieldset, figcaption, figure, form, footer, header, hgroup, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav,object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, tt, table, tbody, textarea, tfoot, thead, time, tr, th, td, u, ul, var, video  { 
-	   font-family: inherit; 
-	   font-size: 100%; 
-	   font-weight: inherit; 
-	   font-style: inherit; 
-	   vertical-align: baseline; 
-	   white-space: normal; 
-	   margin: 0; 
-	   padding: 0; 
-	   border: 0; 
+	dd, del, details, dfn, dialog, div, dl, dt, em, embed, fieldset, figcaption, figure, form, footer, header, hgroup, h1, h2, h3, h4, h5, h6, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav,object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, tt, table, tbody, textarea, tfoot, thead, time, tr, th, td, u, ul, var, video  {
+	   font-family: inherit;
+	   font-size: 100%;
+	   font-weight: inherit;
+	   font-style: inherit;
+	   vertical-align: baseline;
+	   white-space: normal;
+	   margin: 0;
+	   padding: 0;
+	   border: 0;
 	   outline: 0;
 	   background: transparent;
 	}
 
-	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { 
+	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 	   display: block;
 	}
-	                          
+
 	ol, ul {
 	   list-style: none;
 	}
 
-	blockquote, q { 
+	blockquote, q {
 	   -webkit-hyphens: none;
 	      -moz-hyphens: none;
 	       -ms-hyphens: none;
@@ -84,8 +84,8 @@
 	   outline: 0;
 	}
 
-	table { 
-	   border-collapse: collapse; 
+	table {
+	   border-collapse: collapse;
 	   border-spacing: 0; }
 
 	img {
@@ -298,15 +298,15 @@
 	}
 
 	:-moz-placeholder { /* Firefox 18- */
-	   color: #b0b0b0;  
+	   color: #b0b0b0;
 	}
 
 	::-moz-placeholder {  /* Firefox 19+ */
-	   color: #b0b0b0;  
+	   color: #b0b0b0;
 	}
 
-	:-ms-input-placeholder {  
-	   color: #b0b0b0;  
+	:-ms-input-placeholder {
+	   color: #b0b0b0;
 	}
 
 	.gn-animation {
@@ -325,26 +325,26 @@
 		background-image: none;
 	}
 
-	textarea, 
+	textarea,
 	input[type="text"],
 	input[type="submit"],
-	input[type="password"], 
-	input[type="datetime"], 
-	input[type="datetime-local"], 
-	input[type="date"], 
-	input[type="month"], 
-	input[type="time"], 
-	input[type="week"], 
-	input[type="number"], 
-	input[type="email"], 
-	input[type="url"], 
-	input[type="search"], 
-	input[type="tel"], 
-	input[type="color"], 
+	input[type="password"],
+	input[type="datetime"],
+	input[type="datetime-local"],
+	input[type="date"],
+	input[type="month"],
+	input[type="time"],
+	input[type="week"],
+	input[type="number"],
+	input[type="email"],
+	input[type="url"],
+	input[type="search"],
+	input[type="tel"],
+	input[type="color"],
 	.uneditable-input,
 	.dropdown-menu,
-	.navbar .nav > .active > a, 
-	.navbar .nav > .active > a:hover, 
+	.navbar .nav > .active > a,
+	.navbar .nav > .active > a:hover,
 	.navbar .nav > .active > a:focus {
 	  -webkit-appearance: none;
 		text-shadow: none;
@@ -357,7 +357,7 @@
 /* Header
 -------------------------------------------------------------- */
 	.top-wrap {
-	   padding: 20px 0 16px;
+	   padding: 0px 0 5px;
 	}
 
 	.top-wrap .logo,
@@ -566,21 +566,22 @@
 		float: right;
 		color: #fff;
 		font-size: 14px;
+		margin-top: 5px;
 	}
 
 	.top-wrap .login-popup a {
-		line-height: 40px;
+		line-height: 50px;
 		margin-right: 24px;
 		color: #fff;
 	}
 
 	.top-wrap .signup-popup a {
-		line-height: 25px;
+		line-height: 15px;
 		display: inline-block;
 		background-color: #fff;
 		color: #181818;
 		font-weight: 500;
-		padding: 10px 29px;
+		padding: 10px;
 		-webkit-border-radius: 2px;
 		   -moz-border-radius: 2px;
 			  -o-border-radius: 2px;
@@ -674,17 +675,17 @@
 	#mainnav > ul > li {
 	   display: block;
 	   float: left;
-	   padding: 0 24px;
+	   padding: 0 20px;
 	}
 
 	#mainnav > ul > li > a {
 	   position: relative;
 	   display: block;
-	   font-size: 24px;
+	   font-size: 20px;
 	   color: #181818;
 	   text-decoration: none;
-	   height: 88px;
-	   line-height: 88px;
+	   height: 60px;
+	   line-height: 60px;
 	   outline: none;
 	}
 
@@ -1084,7 +1085,7 @@
 	}
 
 	.btn-menu {
-	   display: none 
+	   display: none
 	}
 
 	/* Hide Navigation page*/
@@ -1496,12 +1497,12 @@
 		top: -25px;
 		border-width: 13px;
 		border-style: solid;
-		border-color: transparent transparent #cecece transparent;	
+		border-color: transparent transparent #cecece transparent;
 	}
 
 	.search-header .search-form:after {
 		top: -24px;
-		border-color: transparent transparent #fff transparent;	
+		border-color: transparent transparent #fff transparent;
 	}
 
 	.search-header .search-form.show {
@@ -1635,7 +1636,7 @@
 	.section-element .input-wrap input.error {
 		border: 1px solid #e8280b;
 	}
-	
+
 	.notification_error,
 	.notification_ok {
 		margin-top: 5px;
@@ -2140,7 +2141,7 @@
 
 	.banner .banner-text p,
 	.banner .banner-text p a {
-		color: #b7b7b7;	
+		color: #b7b7b7;
 	}
 
 	.banner .banner-items {
@@ -2209,7 +2210,7 @@
 	.featured-posts .content-left h3 a {
 		font-size: 48px;
 		line-height: 50px;
-		font-weight: 700;	
+		font-weight: 700;
 	}
 
 	.featured-posts .excerpt-entry {
@@ -3627,7 +3628,7 @@
 		position: fixed !important;
 		right: -35px;
 		bottom: 15px;
-		color: #181818; 
+		color: #181818;
 		background-color: #fff;
 		display: block;
 		font-size: 18px;
@@ -3766,7 +3767,7 @@
 
 		#mainnav > ul > li > a {
 			font-size: 20px;
-		}	
+		}
 
 		#mainnav > ul > li.has-children > a:after {
 			font-size: 13px;
@@ -3903,12 +3904,12 @@
 		.hide-navigation .user-area {
 			width: 22.69%;
 			float: left;
-		}	
-		
+		}
+
 		.hide-navigation .title-page {
 			font-size: 24px;
 		}
-		
+
 		.posts .tags a {
 			margin-bottom: 10px;
 		}
@@ -3927,7 +3928,7 @@
 
 		.navigation-panel {
 			width: 147px;
-		} 
+		}
 
 		.navigation-panel .sub-menu {
 			left: 146px;
@@ -4005,7 +4006,7 @@
 		.trending-posts .one-fourth {
 			width: 100%;
 			margin-right: 0;
-			float: none;	
+			float: none;
 		}
 
 		.featured-posts .content-left,

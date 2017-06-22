@@ -108,7 +108,7 @@ class HomeController extends Controller
             return Carbon::parse($date->publish_date)->format('M Y');
         })->take(12);
 
-        return view('category')->with(['title'=>'Articles by "'.$this_user->name.'"' , 'articles' => $articles, 'popular_articles' => $popular_articles, 'archive_by_date'=>$archive_by_date]);
+        return view('category')->with(['user'=>$this_user, 'articles' => $articles, 'popular_articles' => $popular_articles, 'archive_by_date'=>$archive_by_date]);
     }
 
     public function getAbout()
