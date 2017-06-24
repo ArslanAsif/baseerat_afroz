@@ -19,7 +19,7 @@
                             <form class="form-horizontal form-label-left" method="post" action="{{ url('admin/homepage/spotlight') }}">
                                 {{ csrf_field() }}
                                 <?php $i = 1?>
-                                @foreach($spotlights as $spotlight)
+                                @for ($x = 0; $x < 3; $x++)
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Spotlight {{$i}}<span class="required">*</span>
                                     </label>
@@ -27,12 +27,12 @@
                                         <select class="form-control" name={{ "spotlight".$i++ }}>
                                             <option></option>
                                             @foreach($articles as $article)
-                                                <option value="{{$article->id}}" {{ ($article->id == $spotlight->article_id) ? 'selected' : '' }}>{{$article->title}}</option>
+                                                <option value="{{$article->id}}" {{ ($article->id == $spotlights[$x]->article_id) ? 'selected' : '' }}>{{$article->title}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                @endforeach
+                                @endfor
 
                                 {{--<div class="form-group">--}}
                                     {{--<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3 col-sm-offset-3">--}}
@@ -72,7 +72,7 @@
                             <form class="form-horizontal form-label-left" method="post" action="{{ url('admin/homepage/highlight') }}">
                                 {{ csrf_field() }}
                                 <?php $i = 1?>
-                                @foreach($highlights as $highlight)
+                                @for ($x = 0; $x < 4; $x++)
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Highlight {{$i}}<span class="required">*</span>
                                         </label>
@@ -80,12 +80,12 @@
                                             <select class="form-control" name={{ "highlight".$i++ }}>
                                                 <option></option>
                                                 @foreach($articles as $article)
-                                                    <option value="{{$article->id}}" {{ ($article->id == $highlight->article_id) ? 'selected' : '' }}>{{$article->title}}</option>
+                                                    <option value="{{$article->id}}" {{ ($article->id == $highlights[$x]->article_id) ? 'selected' : '' }}>{{$article->title}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                @endforeach
+                                @endfor
 
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
@@ -114,7 +114,7 @@
                             <br />
                             <form class="form-horizontal form-label-left" method="post" action="{{ url('admin/homepage/editorpick') }}">
                                 {{ csrf_field() }}
-                                @foreach($editorpicks as $editorpick)
+                                @for ($x = 0; $x < 3; $x++)
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Editorpick {{$i}}<span class="required">*</span>
                                         </label>
@@ -122,12 +122,12 @@
                                             <select class="form-control" name={{ "editorpick".$i++ }}>
                                                 <option></option>
                                                 @foreach($articles as $article)
-                                                    <option value="{{$article->id}}" {{ ($article->id == $editorpick->article_id) ? 'selected' : '' }}>{{$article->title}}</option>
+                                                    <option value="{{$article->id}}" {{ ($article->id == $editorpicks[$x]->article_id) ? 'selected' : '' }}>{{$article->title}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                @endforeach
+                                @endfor
 
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
@@ -156,7 +156,7 @@
                             <br />
                             <form class="form-horizontal form-label-left" method="post" action="{{ url('admin/homepage/category') }}">
                                 {{ csrf_field() }}
-                                @foreach($hp_categories as $hp_category)
+                                @for ($x = 0; $x < 3; $x++)
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Category {{$i}}<span class="required">*</span>
                                         </label>
@@ -164,12 +164,12 @@
                                             <select class="form-control" name={{ "category".$i++ }}>
                                                 <option></option>
                                                 @foreach($categories as $category)
-                                                    <option value="{{$category->id}}" {{ ($category->id == $hp_category->category_id) ? 'selected' : '' }}>{{$category->title_eng}}</option>
+                                                    <option value="{{$category->id}}" {{ ($category->id == $hp_categories[$x]->category_id) ? 'selected' : '' }}>{{$category->title_eng}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                @endforeach
+                                @endfor
 
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
