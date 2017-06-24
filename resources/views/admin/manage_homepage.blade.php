@@ -27,7 +27,7 @@
                                         <select class="form-control" name={{ "spotlight".$i++ }}>
                                             <option></option>
                                             @foreach($articles as $article)
-                                                <option value="{{$article->id}}" {{ ($article->id == $spotlights[$x]->article_id) ? 'selected' : '' }}>{{$article->title}}</option>
+                                                <option value="{{$article->id}}" {{ isset($spotlights[$x]) ? (($article->id == $spotlights[$x]->article_id) ? 'selected' : '') : '' }}>{{$article->title}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -80,7 +80,7 @@
                                             <select class="form-control" name={{ "highlight".$i++ }}>
                                                 <option></option>
                                                 @foreach($articles as $article)
-                                                    <option value="{{$article->id}}" {{ ($article->id == $highlights[$x]->article_id) ? 'selected' : '' }}>{{$article->title}}</option>
+                                                    <option value="{{$article->id}}" {{ isset($highlights[$x]) ? (($article->id == $highlights[$x]->article_id) ? 'selected' : '') : '' }}>{{$article->title}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -122,7 +122,7 @@
                                             <select class="form-control" name={{ "editorpick".$i++ }}>
                                                 <option></option>
                                                 @foreach($articles as $article)
-                                                    <option value="{{$article->id}}" {{ ($article->id == $editorpicks[$x]->article_id) ? 'selected' : '' }}>{{$article->title}}</option>
+                                                    <option value="{{$article->id}}" {{ isset($editorpicks[$x]) ? (($article->id == $editorpicks[$x]->article_id) ? 'selected' : '') : '' }}>{{$article->title}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -164,7 +164,7 @@
                                             <select class="form-control" name={{ "category".$i++ }}>
                                                 <option></option>
                                                 @foreach($categories as $category)
-                                                    <option value="{{$category->id}}" {{ ($category->id == $hp_categories[$x]->category_id) ? 'selected' : '' }}>{{$category->title_eng}}</option>
+                                                    <option value="{{$category->id}}" {{ isset($hp_categories[$x]) ? (($category->id == $hp_categories[$x]->category_id) ? 'selected' : '') : '' }}>{{$category->title_eng}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
