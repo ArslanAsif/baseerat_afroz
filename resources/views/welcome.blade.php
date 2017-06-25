@@ -241,26 +241,28 @@
                         $animation_delay = 0;
                     ?>
                     @foreach($hp_categories as $category)
-                    <div class="{{ ($cat_count++ == 4) ? 'one-fourth last gn-animation' : 'one-fourth gn-animation' }}" data-animation="fadeInUp" data-animation-delay="{{'0.'.$animation_delay++}}" data-animation-offset="75%">
-                        <div class="section-title">
-                            <h4><a href="{{url('category/'.$category->category->id)}}">{{$category->category->title_eng}} ({{$category->category->articles->count()}})</a></h4>
-                        </div>
-
-                        <?php $cat_first = 0;?>
-                        @foreach($category->category->articles as $article)
-                        <article class="{{ ($cat_first == 0) ? 'post first':'post' }}" dir="auto">
-                            <p hidden>{{$article->title}}</p>
-                            @if($cat_first == 0)
-                            <div class="thumb">
-                                <a href="{{url('article'.$article->id)}}"><img src="{{ url('images/articles/'.$article->picture) }}" alt="img"></a>
+                    @if(isset($category->category->id))
+                        <div class="{{ ($cat_count++ == 4) ? 'one-fourth last gn-animation' : 'one-fourth gn-animation' }}" data-animation="fadeInUp" data-animation-delay="{{'0.'.$animation_delay++}}" data-animation-offset="75%">
+                            <div class="section-title">
+                                <h4><a href="{{url('category/'.$category->category->id)}}">{{$category->category->title_eng}} ({{$category->category->articles->count()}})</a></h4>
                             </div>
-                            @endif
-                            <span class="date">{{\Carbon\Carbon::parse($article->publish_date)->format('M d, Y')}}</span>
-                            <h3><a href="{{url('article'.$article->id)}}">{{$article->title}}</a></h3>
-                        </article><!--  /.post -->
-                        <?php $cat_first++;?>
-                        @endforeach
-                    </div>
+
+                            <?php $cat_first = 0;?>
+                            @foreach($category->category->articles as $article)
+                            <article class="{{ ($cat_first == 0) ? 'post first':'post' }}" dir="auto">
+                                <p hidden>{{$article->title}}</p>
+                                @if($cat_first == 0)
+                                <div class="thumb">
+                                    <a href="{{url('article'.$article->id)}}"><img src="{{ url('images/articles/'.$article->picture) }}" alt="img"></a>
+                                </div>
+                                @endif
+                                <span class="date">{{\Carbon\Carbon::parse($article->publish_date)->format('M d, Y')}}</span>
+                                <h3><a href="{{url('article'.$article->id)}}">{{$article->title}}</a></h3>
+                            </article><!--  /.post -->
+                            <?php $cat_first++;?>
+                            @endforeach
+                        </div>
+                    @endif
                     @endforeach
                 </div><!-- /.trending-posts -->
                 <div class="gn-line"></div>
