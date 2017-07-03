@@ -15,27 +15,26 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $news = Article::where('publish_date', '!=', null)->where('active', 1)->get();
+        $news = Article::where('publish_date', '!=', null)->where('active', 1)->where('del', 0)->get();
 
         return view('admin.manage_article')->with('news', $news);
     }
 
     public function getUnpublished()
     {
-        $news = Article::where('publish_date', null)->where('active', 1)->get();
+        $news = Article::where('publish_date', null)->where('active', 1)->where('del', 0)->get();
         return view('admin.manage_article_submissions')->with(['news' => $news, 'type' => 'unpublished']);
     }
 
     public function getMySubmission()
     {
-        $news = Article::where('user_id', Auth::user()->id)->get();
+        $news = Article::where('user_id', Auth::user()->id)->where('del', 0)->get();
         return view('admin.my_submissions')->with('news', $news);
     }
 
-
     public function getUserSubmission()
     {
-        $news = Article::where('active', 0)->get();
+        $news = Article::where('publish_date', null)->where('active', 0)->where('del', 0)->get();
         return view('admin.manage_article_submissions')->with(['news'=>$news, 'type' => 'submission']);
     }
 
@@ -53,6 +52,7 @@ class ArticleController extends Controller
     {
         $news = Article::find($id);
         $news->publish_date = Carbon::now();
+        $news->active = 1;
         $news->update();
 
         return redirect()->back();
@@ -122,54 +122,28 @@ class ArticleController extends Controller
             }
             else $news->headline = 0;
 
-            if(isset($request['homepage']))
-            {
-                $news->homepage = 1;
-            }
-            else $news->homepage = 0;
-
-            if(isset($request['spotlight']))
-            {
-
-                $news->spotlight = 1;
-            }
-            else $news->spotlight = 0;
-
-            if(isset($request['featured']))
-            {
-
-                $news->featured = 1;
-            }
-            else $news->featured = 0;
 
             if(isset($request['public_appr']))
             {
 
-                $news->public_appr = 1;
+                $news->public_approve = 1;
             }
-            else $news->public_appr = 0;
+            else $news->public_approve = 0;
 
-            if(isset($request['community_appr']))
-            {
 
-                $news->community_appr = 1;
-            }
-            else $news->community_appr = 0;
+            $news->publish_date = null;
+            $news->active = 0;
 
             if(isset($request['publish']))
             {
                 $news->publish_date = Carbon::now();
+                $news->active = 1;
             }
-            else $news->publish_date = null;
         }
         else
         {
-            $news->active = 0;
-            $news->duration = 0;
             $news->publish_date = null;
         }
-
-        
 
         //decode the url, because we want to use decoded characters to use explode
         if(isset($request['image-data']))
@@ -275,39 +249,12 @@ class ArticleController extends Controller
         }
         else $news->headline = 0;
 
-        if(isset($request['homepage']))
-        {
-            $news->homepage = 1;
-        }
-        else $news->homepage = 0;
-
-        if(isset($request['spotlight']))
-        {
-
-            $news->spotlight = 1;
-        }
-        else $news->spotlight = 0;
-
-        if(isset($request['featured']))
-        {
-
-            $news->featured = 1;
-        }
-        else $news->featured = 0;
-
         if(isset($request['public_appr']))
         {
 
-            $news->public_appr = 1;
+            $news->public_approve = 1;
         }
-        else $news->public_appr = 0;
-
-        if(isset($request['community_appr']))
-        {
-
-            $news->community_appr = 1;
-        }
-        else $news->community_appr = 0;
+        else $news->public_approve = 0;
 
         if(isset($request['publish']))
         {
@@ -364,13 +311,32 @@ class ArticleController extends Controller
     public function getDeleteNews($id)
     {
         $news = Article::find($id);
-        $news->delete();
+        $news->del = 1;
+        $news->update();
+        return back();
+    }
+
+    public function getRestoreNews($id)
+    {
+        $news = Article::find($id);
+        $news->del = 0;
+        $news->update();
+        return back();
+    }
+
+    public function getDeleteAllNews()
+    {
+        $allnews = Article::where('del', 1)->get();
+        foreach ($allnews as $news)
+        {
+            $news->delete();
+        }
         return back();
     }
 
     public function getTrash()
     {
-        $articles = Article::where('active', 1)->get();
+        $articles = Article::where('del', 1)->get();
 
         return view('admin.manage_article_submissions')->with(['news'=>$articles, 'type' => 'trash']);
     }

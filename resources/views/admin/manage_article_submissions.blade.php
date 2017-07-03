@@ -12,7 +12,9 @@
                             <h2>
                                 @if(isset($type))
                                     @if($type == 'trash')
-                                        Trash <a href="{{url('/admin/article/deleteall/')}}" class="btn btn-sm btn-danger">Delete All</a>
+                                        Trash <a href="{{url('/admin/article/deleteall')}}" class="btn btn-sm btn-danger">Delete All</a>
+                                    @elseif($type == 'submission')
+                                        User Submissions
                                     @else
                                      Unpublished Articles
                                     @endif
@@ -30,6 +32,8 @@
                             @if(isset($type))
                                 @if($type == 'trash')
                                     Deleted articles can be restored from trash
+                                @elseif($type == 'submission')
+                                    User submitted articles can be reviwed from here.
                                 @else
                                     Unpublished articles can be reviwed and published from here.
                                 @endif
@@ -65,12 +69,7 @@
                                         @if(isset($type))
                                             @if($type == 'trash')
                                                 <td>
-                                                    <form id="{{ 'publish-form'.$this_news->id }}" action="{{ isset($type) ? url('/admin/article/publish/'.$this_news->id) : url('/admin/article/approve/'.$this_news->id) }}" method="POST" style="display: none;">
-                                                        {{ csrf_field() }}
-                                                    </form>
-
                                                     <a data-toggle="tooltip" title="Edit" href="{{ url('/admin/article/edit/'.$this_news->id) }}" class="btn btn-default"><span class="fa fa-pencil-square-o"></span></a>
-
                                                     <a data-toggle="tooltip" title="Restore" href="{{ url('/admin/article/recycle/'.$this_news->id) }}" class="btn btn-danger"><span class="fa fa-recycle"></span></a>
                                                 </td>
                                             @else
@@ -83,7 +82,6 @@
                                                     </form>
 
                                                     <a data-toggle="tooltip" title="Edit" href="{{ url('/admin/article/edit/'.$this_news->id) }}" class="btn btn-default"><span class="fa fa-pencil-square-o"></span></a>
-
                                                     <a data-toggle="tooltip" title="Delete" href="{{ url('/admin/article/delete/'.$this_news->id) }}" class="btn btn-danger"><span class="fa fa-trash-o"></span></a>
                                                 </td>
                                             @endif

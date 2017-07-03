@@ -30,6 +30,7 @@
                                         <th>Author</th>
                                         <th>Submitted On</th>
                                         <th>Published On</th>
+                                        <th>Public</th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -45,6 +46,7 @@
                                             <td>{{ $this_news->user->name }}</td>
                                             <td>{{ $this_news->created_at }}</td>
                                             <td>{{ $this_news->publish_date }}</td>
+                                            <td>{{ $this_news->public_approve ? "Yes" : "No" }}</td>
                                             <td>
                                                 <a data-toggle="tooltip" title="Unpublish" href="#" class="btn btn-warning" onclick="event.preventDefault();
                                                                          document.getElementById('{{ "publish-form".$this_news->id }}').submit();"><span class="fa fa-close"></span></a>
@@ -53,7 +55,7 @@
                                                     {{ csrf_field() }}
                                                 </form>
 
-                                                <a data-toggle="tooltip" title="Send as Newsletter" href="{{ url('/article/newsletter/'.$this_news->id) }}" class="btn btn-primary"><span class="fa fa-plane"></span></a>
+                                                <a data-toggle="tooltip" title="Send as Newsletter" href="{{ url('/admin/newsletter/'.$this_news->id) }}" class="btn btn-primary"><span class="fa fa-plane"></span></a>
 
                                                 <a data-toggle="tooltip" title="Edit!" href="{{ url('/admin/article/edit/'.$this_news->id) }}" class="btn btn-default"><span class="fa fa-pencil-square-o"></span></a>
 

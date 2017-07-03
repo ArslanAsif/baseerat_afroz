@@ -114,6 +114,7 @@
                             <br />
                             <form class="form-horizontal form-label-left" method="post" action="{{ url('admin/homepage/editorpick') }}">
                                 {{ csrf_field() }}
+                                <?php $i = 1?>
                                 @for ($x = 0; $x < 3; $x++)
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Editorpick {{$i}}<span class="required">*</span>
@@ -156,7 +157,8 @@
                             <br />
                             <form class="form-horizontal form-label-left" method="post" action="{{ url('admin/homepage/category') }}">
                                 {{ csrf_field() }}
-                                @for ($x = 0; $x < 3; $x++)
+                                <?php $i = 1?>
+                                @for ($x = 0; $x < 4; $x++)
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Category {{$i}}<span class="required">*</span>
                                         </label>

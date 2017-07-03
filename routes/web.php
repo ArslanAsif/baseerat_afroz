@@ -14,6 +14,9 @@
 Route::get('/', 'HomeController@getIndex');
 Route::get('/home', 'HomeController@getIndex');
 Route::get('/about', 'HomeController@getAbout');
+Route::post('newsletter/subscribe', 'HomeController@postAddSubscriber');
+Route::post('newsletter/unsubscribe', 'HomeController@postUnsubscribe');
+Route::get('subscriber/confirm/{email}/{token}', 'HomeController@getAddSubscriber');
 
 Auth::routes();
 
@@ -66,6 +69,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
         Route::get('/edit/{id}', 'ArticleController@getEditNews');
         Route::post('/edit/{id}', 'ArticleController@postEditNews');
         Route::get('/delete/{id}', 'ArticleController@getDeleteNews');
+        Route::get('/deleteall', 'ArticleController@getDeleteAllNews');
+        Route::get('/recycle/{id}', 'ArticleController@getRestoreNews');
         Route::post('/publish/{id}', 'ArticleController@postPublishNews');
         Route::post('/unpublish/{id}', 'ArticleController@postUnpublishNews');
         Route::post('/approve/{id}', 'ArticleController@postApproveNews');

@@ -19,7 +19,7 @@
 
                             <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method=post action="{{ isset($news) ?  url('admin/article/edit/'.$news->id): url('article/add') }}">
                                 {{ csrf_field() }}
-                                
+
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">Title <span class="required">*</span>
                                     </label>
@@ -123,27 +123,27 @@
                                             </label>
                                         </div>
 
-                                        <div class="" id="homepage-switch">
-                                            <label class="form-control">
-                                                <input name="homepage" type="checkbox" class="js-switch" {{ isset($news) ? ($news->homepage == 1) ? 'checked': '': '' }} {{isset($errors) ? old('homepage') ? 'checked' : '' : ''}} /> <span>Show on Homepage</span><span style="float:right;">سر ورق پر ظاہر کریں</span>
-                                            </label>
-                                        </div>
+                                        {{--<div class="" id="homepage-switch">--}}
+                                            {{--<label class="form-control">--}}
+                                                {{--<input name="homepage" type="checkbox" class="js-switch" {{ isset($news) ? ($news->homepage == 1) ? 'checked': '': '' }} {{isset($errors) ? old('homepage') ? 'checked' : '' : ''}} /> <span>Show on Homepage</span><span style="float:right;">سر ورق پر ظاہر کریں</span>--}}
+                                            {{--</label>--}}
+                                        {{--</div>--}}
 
-                                        <div class="" id="spotlight-switch">
-                                            <label class="form-control">
-                                                <input name="spotlight" type="checkbox" class="js-switch" {{ isset($news) ? ($news->spotlight == 1) ? 'checked': '': '' }} {{isset($errors) ? old('spotlight') ? 'checked' : '' : ''}} /> <span>Show as spotlight</span><span style="float:right;">مرکزی طور پر دکھائیں</span>
-                                            </label>
-                                        </div>
+                                        {{--<div class="" id="spotlight-switch">--}}
+                                            {{--<label class="form-control">--}}
+                                                {{--<input name="spotlight" type="checkbox" class="js-switch" {{ isset($news) ? ($news->spotlight == 1) ? 'checked': '': '' }} {{isset($errors) ? old('spotlight') ? 'checked' : '' : ''}} /> <span>Show as spotlight</span><span style="float:right;">مرکزی طور پر دکھائیں</span>--}}
+                                            {{--</label>--}}
+                                        {{--</div>--}}
 
-                                        <div class="" id="community-switch">
-                                            <label class="form-control">
-                                                <input name="community_appr" type="checkbox" class="js-switch" {{ isset($news) ? ($news->community_appr == 1) ? 'checked': '': '' }} {{isset($errors) ? old('community_appr') ? 'checked' : '' : ''}} /> <span>Approve for Community</span><span style="float:right;">کمیونٹی کے لئے منظور کریں</span>
-                                            </label>
-                                        </div>
+                                        {{--<div class="" id="community-switch">--}}
+                                            {{--<label class="form-control">--}}
+                                                {{--<input name="community_appr" type="checkbox" class="js-switch" {{ isset($news) ? ($news->community_appr == 1) ? 'checked': '': '' }} {{isset($errors) ? old('community_appr') ? 'checked' : '' : ''}} /> <span>Approve for Community</span><span style="float:right;">کمیونٹی کے لئے منظور کریں</span>--}}
+                                            {{--</label>--}}
+                                        {{--</div>--}}
 
                                         <div class="" id="public-switch">
                                             <label class="form-control">
-                                                <input name="public_appr" type="checkbox" class="js-switch" {{ isset($news) ? ($news->public_appr == 1) ? 'checked': '': '' }} {{isset($errors) ? old('public_appr') ? 'checked' : '' : ''}} /> <span>Approve for Public</span><span style="float:right;">پبلک لئے منظور کریں</span>
+                                                <input name="public_appr" type="checkbox" class="js-switch" {{ isset($news) ? ($news->public_approve == 1) ? 'checked': '': '' }} {{isset($errors) ? old('public_appr') ? 'checked' : '' : ''}} /> <span>Approve for Public</span><span style="float:right;">پبلک لئے منظور کریں</span>
                                             </label>
                                         </div>
 
@@ -356,7 +356,7 @@
                 width: 505,
                 height: 260,
                 maxZoom: 2,
-                // freeMove true, 
+                // freeMove true,
                 imageState: {
                     src: '{{ isset($news) ? url('images/articles/'.$news->picture) : '' }}{{ isset($errors) ? old('image-data') : ''}}',
                 },
