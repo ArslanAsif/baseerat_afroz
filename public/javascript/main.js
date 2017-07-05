@@ -528,7 +528,7 @@
         goTop()
         googleMap();
         ajaxContactForm();
-        ajaxSubscribe.eventLoad();
+        // ajaxSubscribe.eventLoad();
         // Initialize responsive and mega menu
         responsiveMenu.initial($(window).width());
         megaMenu($(window).width());
