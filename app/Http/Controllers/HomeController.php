@@ -52,7 +52,7 @@ class HomeController extends Controller
 
             $hp_categories = Homepage::where('type', 'category')->orderBy('priority', 'ASC')->with([
                 'category' =>function ($query) {
-                    $query->where('category.active', 1);
+                    $query->where('active', 1);
                 },
                 'category.articles' => function ($query) {
                     $query->where('articles.publish_date', '!=', null)->where('articles.del', 0)->where('articles.public_approve', 1);
