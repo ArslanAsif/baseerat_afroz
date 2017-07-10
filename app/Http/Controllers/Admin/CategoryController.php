@@ -45,12 +45,6 @@ class CategoryController extends Controller
         else
             $category->headline = 0;
 
-
-        if ($request['homepage'] == 'on')
-            $category->homepage = 1;
-        else
-            $category->homepage = 0;
-
         $category->save();
 
         return redirect()->back();
@@ -87,13 +81,7 @@ class CategoryController extends Controller
         if($request['headline'] == 'on')
             $category->headline = 1;
         else
-            $category->latest = 0;
-
-
-        if ($request['homepage'] == 'on')
-            $category->homepage = 1;
-        else
-            $category->homepage = 0;
+            $category->headline = 0;
 
         $category->update();
 

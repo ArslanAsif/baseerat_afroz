@@ -37,6 +37,7 @@ class HomeController extends Controller
     {
         if(Auth::guest())
         {
+            $headlines = Article::where('publish_date', '!=', null)->where('del', 0)->where('public_approve', '1')->where('headline', 1)->orderBy('publish_date', 'DESC')->get();
             $recent_articles = Article::where('publish_date', '!=', null)->where('del', 0)->where('public_approve', '1')->orderBy('publish_date', 'DESC')->take(3)->get();
             $popular_articles = Article::where('publish_date', '!=', null)->where('del', 0)->where('public_approve', '1')->orderBy('view_count', 'DESC')->take(5)->get();
 
@@ -50,7 +51,9 @@ class HomeController extends Controller
             //$hp_categories = Homepage::where('type', 'category')->orderBy('priority', 'ASC')->get();
 
             $hp_categories = Homepage::where('type', 'category')->orderBy('priority', 'ASC')->with([
-                'category' ,
+                'category' =>function ($query) {
+                    $query->where('category.active', 1);
+                },
                 'category.articles' => function ($query) {
                     $query->where('articles.publish_date', '!=', null)->where('articles.del', 0)->where('articles.public_approve', 1);
                 }
@@ -58,6 +61,7 @@ class HomeController extends Controller
         }
         else
         {
+            $headlines = Article::where('publish_date', '!=', null)->where('del', 0)->where('headline', 1)->orderBy('publish_date', 'DESC')->get();
             $recent_articles = Article::where('publish_date', '!=', null)->where('del', 0)->orderBy('publish_date', 'DESC')->take(3)->get();
             $popular_articles = Article::where('publish_date', '!=', null)->where('del', 0)->orderBy('view_count', 'DESC')->take(5)->get();
 
@@ -77,7 +81,7 @@ class HomeController extends Controller
             ])->get();
         }
 
-        return view('welcome')->with(['recent_articles' => $recent_articles, 'popular_articles' => $popular_articles, 'spotlights'=>$spotlights, 'highlights'=>$highlights, 'editorpicks'=>$editorpicks, 'hp_categories'=>$hp_categories, 'archive_by_date'=>$archive_by_date]);
+        return view('welcome')->with(['headlines'=>$headlines,  'recent_articles' => $recent_articles, 'popular_articles' => $popular_articles, 'spotlights'=>$spotlights, 'highlights'=>$highlights, 'editorpicks'=>$editorpicks, 'hp_categories'=>$hp_categories, 'archive_by_date'=>$archive_by_date]);
     }
 
     public function getCategory($category)
@@ -100,6 +104,7 @@ class HomeController extends Controller
                 return Carbon::parse($date->publish_date)->format('M Y');
             })->take(12);
         }
+
 
         return view('category')->with(['category'=>$this_category , 'articles' => $articles, 'popular_articles' => $popular_articles, 'archive_by_date'=>$archive_by_date]);
     }

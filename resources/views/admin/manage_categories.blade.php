@@ -23,7 +23,8 @@
                                     <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Parent</th>
+                                        {{--<th>Parent</th>--}}
+                                        <th>Status</th>
                                         <th>Added On</th>
                                         <th></th>
                                     </tr>
@@ -34,7 +35,8 @@
                                     @foreach($categories as $category)
                                     <tr>
                                         <td>{{ $category->title_eng."-".$category->title_ur }}</td>
-                                        <td>{{ $category->category_id }}</td>
+                                        {{--<td>{{ isset($category->parent->id) ? $category->parent->title_eng : '' }}</td>--}}
+                                        <td>{{ $category->active ? 'Active' : 'Inactive' }}</td>
                                         <td>{{ $category->created_at }}</td>
                                         <td>
                                             <a href="{{ url('/admin/category/edit/'.$category->id) }}" class="btn btn-default"><span class="fa fa-pencil-square-o"></span></a>

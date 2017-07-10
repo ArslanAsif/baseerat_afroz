@@ -51,7 +51,7 @@
                                 <h2><a href="#">{{$this_article->title}}</a></h2>
                                 <p>{{$this_article->summary}}</p>
                                 <div class="meta">
-                                    <span class="author">By <a href="#">{{$this_article->user->name}}</a></span>
+                                    <span class="author">By <a href="{{ url('/user/'.$this_article->user_id) }}">{{$this_article->user->name}}</a></span>
                                     <span class="time"> Published on {{\Carbon\Carbon::parse($this_article->publish_date)->format('M d, Y')}}</span>
                                 </div>
                             </div><!-- /.head-post -->

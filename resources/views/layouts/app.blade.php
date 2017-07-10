@@ -237,6 +237,7 @@
 
     <!-- Javascript -->
     <script type="text/javascript" src="{{ url('/javascript/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url('javascript/vticker.js') }}"></script>
     <script type="text/javascript" src="{{ url('/javascript/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ url('/javascript/jquery.easing.js') }}"></script>
     <script type="text/javascript" src="{{ url('/javascript/matchMedia.js') }}"></script>
@@ -249,12 +250,11 @@
     
     <script type="text/javascript" src="{{ url('javascript/jquery.doubletaptogo.js') }}"></script>
     <script type="text/javascript" src="{{ url('javascript/smoothscroll.js') }}"></script>
+
     <script type="text/javascript" src="{{ url('javascript/main.js') }}"></script>
 
 
     <script>
-
-
         var layout = {};
         layout.setDirection = function (direction) {
             layout.rtl = (direction === 'rtl');
@@ -305,5 +305,7 @@
 
         layout.setDirection('ltr');
     </script>
+
+    @yield('js')
 </body>
 </html>

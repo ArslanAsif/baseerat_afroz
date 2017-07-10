@@ -36,19 +36,19 @@
                                             <input dir="rtl" type="text" id="category_ur" value="{{ isset($cateData) ? $cateData->title_ur : '' }}" name="category_ur" required="required" placeholder="اردو میں قسم کا نام لکھیں" class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="parent-category" class="control-label col-md-3 col-sm-3 col-xs-12">Parent Category (if any)</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <select class="form-control" name="parent-category">
-                                                <option></option>
-                                                @foreach($categories as $category)
-                                                    <option {{ isset($cateData) ? ($cateData->category_id == $category->id) ? 'selected' : '' : '' }} value="{{ $category->id }}">
-                                                        {{ $category->title_eng.' - '.$category->title_ur  }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
+                                    {{--<div class="form-group">--}}
+                                        {{--<label for="parent-category" class="control-label col-md-3 col-sm-3 col-xs-12">Parent Category (if any)</label>--}}
+                                        {{--<div class="col-md-6 col-sm-6 col-xs-12">--}}
+                                            {{--<select class="form-control" name="parent-category">--}}
+                                                {{--<option></option>--}}
+                                                {{--@foreach($categories as $category)--}}
+                                                    {{--<option {{ isset($cateData) ? ($cateData->category_id == $category->id) ? 'selected' : '' : '' }} value="{{ $category->id }}">--}}
+                                                        {{--{{ $category->title_eng.' - '.$category->title_ur  }}--}}
+                                                    {{--</option>--}}
+                                                {{--@endforeach--}}
+                                            {{--</select>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
 
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="priority">Priority <span class="required">*</span>
@@ -63,16 +63,6 @@
                                             <div class="">
                                                 <label>
                                                     <input name="active" type="checkbox" class="js-switch" {{ isset($cateData) ? ($cateData->active == 1) ? 'checked': '': '' }} /> Active
-                                                </label>
-                                            </div>
-                                            <div class="">
-                                                <label>
-                                                    <input name="homepage" type="checkbox" class="js-switch" {{ isset($cateData) ? ($cateData->homepage == 1) ? 'checked': '': '' }} /> Show on Homepage
-                                                </label>
-                                            </div>
-                                            <div class="">
-                                                <label>
-                                                    <input name="headline" type="checkbox" class="js-switch" {{ isset($cateData) ? ($cateData->headline == 1) ? 'checked': '': '' }} /> Show in Headlines
                                                 </label>
                                             </div>
                                         </div>

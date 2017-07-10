@@ -4,6 +4,20 @@
 <!-- Main -->
 <section id="main" class="rtl">
     <div class="container">
+        <div style="padding:10px; margin-top: -25px">
+            <div class="row" style="background: #F0F0F0;">
+                <div class="col-md-10">
+                    <div id="example">
+                        <ul>
+                            @foreach($headlines as $headline)
+                                <li><span style="font-weight: bold">Headlines: </span><a href="{{ url('/article/'.$headline->id) }}">{{ $headline->title }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-8">
                 <div class="featured-posts gn-animation" data-animation="fadeInUp" data-animation-delay="0" data-animation-offset="75%">
@@ -272,4 +286,12 @@
         </div><!-- /.row -->
     </div><!-- /.container -->
 </section>
+@endsection
+
+@section('js')
+    <script>
+        $(function() {
+            $('#example').vTicker();
+        });
+    </script>
 @endsection
