@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -109,6 +110,26 @@ class HomeController extends Controller
         return view('category')->with(['category'=>$this_category , 'articles' => $articles, 'popular_articles' => $popular_articles, 'archive_by_date'=>$archive_by_date]);
     }
 
+    function get_ip() {
+        //Just get the headers if we can or else use the SERVER global
+        if ( function_exists( 'apache_request_headers' ) ) {
+            $headers = apache_request_headers();
+        } else {
+            $headers = $_SERVER;
+        }
+        //Get the forwarded IP if it exists
+        if ( array_key_exists( 'X-Forwarded-For', $headers ) && filter_var( $headers['X-Forwarded-For'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 ) ) {
+            $the_ip = $headers['X-Forwarded-For'];
+        } elseif ( array_key_exists( 'HTTP_X_FORWARDED_FOR', $headers ) && filter_var( $headers['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 )
+        ) {
+            $the_ip = $headers['HTTP_X_FORWARDED_FOR'];
+        } else {
+
+            $the_ip = filter_var( $_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 );
+        }
+        return $the_ip;
+    }
+
     public function getArticle($article)
     {
         if(Auth::guest())
@@ -116,7 +137,6 @@ class HomeController extends Controller
             $article = Article::where('id', $article)->where('del', 0)->where('public_approve', '1')->first();
             $recent_articles = Article::where('publish_date', '!=', null)->where('del', 0)->where('public_approve', '1')->where('category_id', $article->category->id)->orderBy('publish_date', 'DESC')->take(10)->get();
             $popular_articles = Article::where('publish_date', '!=', null)->where('del', 0)->where('public_approve', '1')->where('category_id', $article->category->id)->orderBy('view_count', 'DESC')->take(10)->get();
-
         }
         else
         {
@@ -124,6 +144,45 @@ class HomeController extends Controller
             $recent_articles = Article::where('publish_date', '!=', null)->where('del', 0)->where('category_id', $article->category->id)->orderBy('publish_date', 'DESC')->take(10)->get();
             $popular_articles = Article::where('publish_date', '!=', null)->where('del', 0)->where('category_id', $article->category->id)->orderBy('view_count', 'DESC')->take(10)->get();
         }
+
+        if(Session::has('ip'))
+        {
+            if(Session::has('s_articles'))
+            {
+                $array = explode(',', Session::get('articles'));
+                foreach ($array as $element)
+                {
+                    if($element == $article->id)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        $s_articles = Session::get('articles');
+                        Session::put('articles', $s_articles.",".$article->id);
+
+                        $article->view_count = $article->view_count + 1;
+                        $article->update();
+                    }
+                }
+            }
+            else
+            {
+                Session::put('articles', $article->id);
+
+                $article->view_count = $article->view_count + 1;
+                $article->update();
+            }
+        }
+        else
+        {
+            Session::put('ip', $this->get_ip());
+            Session::put('articles', $article->id);
+
+            $article->view_count = $article->view_count + 1;
+            $article->update();
+        }
+
 
         return view('article')->with(['this_article' => $article, 'recent_articles' => $recent_articles, 'popular_articles' => $popular_articles]);
     }

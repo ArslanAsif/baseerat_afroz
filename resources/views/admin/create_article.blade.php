@@ -61,24 +61,24 @@
                                     </div>
                                 </div>*/ -->
 
-                                <div class="form-group" id="priority-div">
-                                    <label style="margin-top: -10px;" class="control-label col-md-3 col-sm-3 col-xs-12">Priority <br><small>(Lower is better)</small></label>
+                                {{--<div class="form-group" id="priority-div">--}}
+                                    {{--<label style="margin-top: -10px;" class="control-label col-md-3 col-sm-3 col-xs-12">Priority <br><small>(Lower is better)</small></label>--}}
 
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select class="form-control" name="priority">
-                                            <option {{ isset($news) ? ($news->priority == 5) ? 'selected' : '' : (isset($errors) ? (old('priority') == 5) ? 'selected': '': '') }} value="5">5</option>
+                                    {{--<div class="col-md-6 col-sm-6 col-xs-12">--}}
+                                        {{--<select class="form-control" name="priority">--}}
+                                            {{--<option {{ isset($news) ? ($news->priority == 5) ? 'selected' : '' : (isset($errors) ? (old('priority') == 5) ? 'selected': '': '') }} value="5">5</option>--}}
 
-                                            <option {{ isset($news) ? ($news->priority == 4) ? 'selected' : '' : ( isset($errors) ? (old('priority') == 4) ? 'selected': '' : '') }} value="4">4</option>
+                                            {{--<option {{ isset($news) ? ($news->priority == 4) ? 'selected' : '' : ( isset($errors) ? (old('priority') == 4) ? 'selected': '' : '') }} value="4">4</option>--}}
 
-                                            <option {{ isset($news) ? ($news->priority == 3) ? 'selected' : '' : (isset($errors) ? (old('priority') == 3) ? 'selected': '': '') }} value="3">3</option>
+                                            {{--<option {{ isset($news) ? ($news->priority == 3) ? 'selected' : '' : (isset($errors) ? (old('priority') == 3) ? 'selected': '': '') }} value="3">3</option>--}}
 
-                                            <option {{ isset($news) ? ($news->priority == 2) ? 'selected' : '' : (isset($errors) ? (old('priority') == 2) ? 'selected': '': '') }} value="2">2</option>
+                                            {{--<option {{ isset($news) ? ($news->priority == 2) ? 'selected' : '' : (isset($errors) ? (old('priority') == 2) ? 'selected': '': '') }} value="2">2</option>--}}
 
-                                            <option {{ isset($news) ? ($news->priority == 1) ? 'selected' : '' : (isset($errors) ? (old('priority') == 1) ? 'selected': '' : '') }} value="1">1</option>
-                                        </select>
-                                    </div>
-                                    <label style="text-align: left; margin-top: -10px;" class="label-ur control-label col-md-3 col-sm-3 hidden-xs">ترجیح <br><small>(کم بہتر ہے)</small></label>
-                                </div>
+                                            {{--<option {{ isset($news) ? ($news->priority == 1) ? 'selected' : '' : (isset($errors) ? (old('priority') == 1) ? 'selected': '' : '') }} value="1">1</option>--}}
+                                        {{--</select>--}}
+                                    {{--</div>--}}
+                                    {{--<label style="text-align: left; margin-top: -10px;" class="label-ur control-label col-md-3 col-sm-3 hidden-xs">ترجیح <br><small>(کم بہتر ہے)</small></label>--}}
+                                {{--</div>--}}
 
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Tags</label>
