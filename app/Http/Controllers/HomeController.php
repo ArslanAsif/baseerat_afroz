@@ -273,6 +273,12 @@ class HomeController extends Controller
 
     public function postAddSubscriber(Request $request)
     {
+        $this->validate(
+            $request, [
+                'subscribe-email' => 'required'
+            ]
+        );
+
         if(Subscriber::where('email', $request['subscribe-email'])->count())
         {
             return redirect()->back()->with('message', 'Already Subscribed');
@@ -292,5 +298,27 @@ class HomeController extends Controller
     public function postUnsubscribe(Request $request)
     {
 
+    }
+
+    public function getHeadlines()
+    {
+        if(Auth::guest())
+        {
+            $articles = Article::where('publish_date', '!=', null)->where('del', 0)->where('public_approve', '1')->where('headline', 1)->orderBy('publish_date', 'DESC')->paginate(12);
+            $popular_articles = Article::where('publish_date', '!=', null)->where('del', 0)->where('public_approve', '1')->orderBy('view_count', 'DESC')->take(5)->get();
+            $archive_by_date = Article::where('publish_date', '!=', null)->where('del', 0)->where('public_approve', '1')->orderBy('publish_date', 'DESC')->get()->groupBy(function($date) {
+                return Carbon::parse($date->publish_date)->format('M Y');
+            })->take(12);
+        }
+        else
+        {
+            $articles = Article::where('publish_date', '!=', null)->where('del', 0)->where('headline', 1)->orderBy('publish_date', 'DESC')->paginate(12);
+            $popular_articles = Article::where('publish_date', '!=', null)->where('del', 0)->orderBy('view_count', 'DESC')->take(5)->get();
+            $archive_by_date = Article::where('publish_date', '!=', null)->where('del', 0)->orderBy('publish_date', 'DESC')->get()->groupBy(function($date) {
+                return Carbon::parse($date->publish_date)->format('M Y');
+            })->take(12);
+        }
+
+        return view('category')->with(['title'=>'Headlines', 'articles' => $articles, 'popular_articles' => $popular_articles, 'archive_by_date'=>$archive_by_date]);
     }
 }

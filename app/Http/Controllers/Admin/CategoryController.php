@@ -47,7 +47,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Successfully Submitted!');
     }
 
     public function getEditCategory($id)
@@ -85,7 +85,8 @@ class CategoryController extends Controller
 
         $category->update();
 
-        return redirect()->back();    }
+        return redirect()->back()->with('message', 'Successfully Edited!');
+    }
 
     public function getDeleteCategory()
     {

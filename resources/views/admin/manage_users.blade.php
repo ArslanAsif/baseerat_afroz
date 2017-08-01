@@ -16,6 +16,11 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
+                            @if(Session::has('message'))
+                                <div class="alert alert-success">
+                                    <strong>Success!</strong> {{Session::get('message')}}
+                                </div>
+                            @endif
                             <p class="text-muted font-13 m-b-30">
                             </p>
                             <div class="table-responsive">

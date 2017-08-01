@@ -32,4 +32,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Article');
     }
+
+    public function delete()
+    {
+        if(file_exists('public/images/users')){
+            @unlink('public/images/users');
+        }
+        parent::delete();
+    }
 }

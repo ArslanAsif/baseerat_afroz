@@ -9,9 +9,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            @if($check=="links")
-                                <h2>Important Links</h2>
-                            @elseif($check=="contact")
+                            @if($check=="contact")
                                 <h2>Contact <small></small></h2>
                             @elseif($check=="aboutus")
                                 <h2>About <small></small></h2>
@@ -25,7 +23,11 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-
+                            @if(Session::has('message'))
+                                <div class="alert alert-success">
+                                    <strong>Success!</strong> {{Session::get('message')}}
+                                </div>
+                            @endif
                             <form action="{{url('/admin/about/'.$check)}}" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                                 {{ csrf_field() }}
                                 @include('admin.includes.text_editor')

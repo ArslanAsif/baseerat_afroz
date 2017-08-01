@@ -11,6 +11,32 @@
                         <div class="title_left">
                             <h3>Settings</h3>
                         </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                @include('admin.includes.errors')
+                            </div>
+                        </div>
+
+                        @if(Session::has('message'))
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="alert alert-success">
+                                        <strong>Success!</strong> {{Session::get('message')}}
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+                        @if(Session::has('error'))
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="alert alert-danger">
+                                        <strong>Error!</strong> {{Session::get('error')}}
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
 
                     <div class="x_panel">
@@ -105,36 +131,35 @@
                                                 : ایڈیٹر کے ریمارکس
                                             </label>
                                         </div>
-
                                         <div class="ln_solid"></div>
-
-                                        <div class="row">
-                                            <form id="demo-form2" class="form-horizontal form-label-left" method="post" action="{{url('settings/user/edit/')}}">
-                                                {{csrf_field()}}
-
-                                                <input type="hidden" name="image-data" class="hidden-image-data" value="{{ isset($errors) ? old('image-data') : ''}}" />
-
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3 col-sm-4 col-xs-12" for="user_descr">
-                                                        About Me<br><small></small>
-                                                    </label>
-                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                        <textarea rows="8" name="user_descr" id="user_descr" class="form-control col-md-7 col-xs-12">{{isset($user->user_descr) ? $user->user_descr : ''}}</textarea>
-                                                    </div>
-                                                    <label style="text-align: left" class="control-label col-md-3 col-sm-4 col-xs-12" for="user_descr">
-                                                        میرے بارے میں<br><small></small>
-                                                    </label>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                                        <a href="#" onclick="submitFunc(event)" class="btn btn-success">Submit</a>
-                                                    </div>
-                                                </div>
-
-                                            </form>
-                                        </div>
                                     @endif
+
+                                    <div class="row">
+                                        <form id="demo-form2" class="form-horizontal form-label-left" method="post" action="{{url('settings/user/edit/')}}">
+                                            {{csrf_field()}}
+
+                                            <input type="hidden" name="image-data" class="hidden-image-data" value="{{ isset($errors) ? old('image-data') : ''}}" />
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-4 col-xs-12" for="user_descr">
+                                                    About Me<br><small></small>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <textarea rows="8" name="user_descr" id="user_descr" class="form-control col-md-7 col-xs-12">{{isset($user->user_descr) ? $user->user_descr : ''}}</textarea>
+                                                </div>
+                                                <label style="text-align: left" class="control-label col-md-3 col-sm-4 col-xs-12" for="user_descr">
+                                                    میرے بارے میں<br><small></small>
+                                                </label>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                                    <a href="#" onclick="submitFunc(event)" class="btn btn-success">Submit</a>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +182,7 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="curr-pass">Current Password <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="password" name="curr_pass" id="curr-pass" required="required" class="form-control col-md-7 col-xs-12">
+                                        <input type="password" name="curr-pass" id="curr-pass" required="required" class="form-control col-md-7 col-xs-12">
                                     </div>
                                     <label style="text-align: left" class="control-label col-md-3 col-sm-3 col-xs-12" for="curr-pass"><span class="required">*</span> موجودہ پاسورڈ
                                     </label>
@@ -174,7 +199,7 @@
                                     <label for="re-new-pass" class="control-label col-md-3 col-sm-3 col-xs-12">Retype Password <span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="re-new-pass" required="required" data-parsley-equalto="#new-pass" class="form-control col-md-7 col-xs-12" type="password" name="re-new-pass">
+                                        <input id="re-new-pass" name="new-pass_confirmation" required="required" data-parsley-equalto="#new-pass" class="form-control col-md-7 col-xs-12" type="password" name="re-new-pass">
                                     </div>
                                     <label style="text-align: left" for="re-new-pass" class="control-label col-md-3 col-sm-3 col-xs-12"><span class="required">*</span> دوبارہ پاسوورڈ لکھئے 
                                     </label>

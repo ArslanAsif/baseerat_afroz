@@ -33,33 +33,7 @@ class AboutController extends Controller
             $aboutus->save();
         }
 
-        return redirect()->back();
-    }
-
-    public function getAboutGcc()
-    {
-        $aboutus = About::where('type','aboutgcc')->first();
-        return view('admin.edit_about',['aboutus'=>$aboutus,'check'=>'aboutgcc']);
-    }
-
-    public function postAboutGcc(Request $request)
-    {
-        $aboutgcc = About::where('type', 'aboutgcc');
-        if($aboutgcc->count() > 0)
-        {
-            $aboutgcc = $aboutgcc->first();
-            $aboutgcc->descr_eng = $request['descr'];
-            $aboutgcc->update();
-        }
-        else
-        {
-            $aboutgcc = new About();
-            $aboutgcc->type = 'aboutgcc';
-            $aboutgcc->descr_eng = $request['descr'];
-            $aboutgcc->save();
-        }
-
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Successfully Submitted!');
     }
 
     public function getContactUs()
@@ -85,7 +59,7 @@ class AboutController extends Controller
             $contact->save();
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Successfully Submitted!');
     }
 
     public function getTerms()
@@ -112,6 +86,6 @@ class AboutController extends Controller
             $terms->save();
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Successfully Submitted!');
     }
 }

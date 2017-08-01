@@ -17,6 +17,9 @@
 			@if($errors and $errors->has('descr'))
 				<li>Description is required <span style="float: right">تفصیل درکار ہے &nbsp&nbsp•</span></li>
 			@endif
+			@if($errors and $errors->has('image-data'))
+				<li>Image is required <span style="float: right">تصویر درکار ہے &nbsp&nbsp•</span></li>
+			@endif
         </ul>
     </div>
 @endif

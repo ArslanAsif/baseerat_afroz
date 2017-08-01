@@ -14,6 +14,7 @@
 Route::get('/', 'HomeController@getIndex');
 Route::get('/home', 'HomeController@getIndex');
 Route::get('/about', 'HomeController@getAbout');
+Route::get('/headlines', 'HomeController@getHeadlines');
 Route::post('newsletter/subscribe', 'HomeController@postAddSubscriber');
 Route::post('newsletter/unsubscribe', 'HomeController@postUnsubscribe');
 Route::get('subscriber/confirm/{email}/{token}', 'HomeController@getAddSubscriber');

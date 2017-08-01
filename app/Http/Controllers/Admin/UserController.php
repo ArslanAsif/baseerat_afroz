@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -48,7 +49,7 @@ class UserController extends Controller
         $user->ban = $ban;
         $user->update();
 
-        return redirect()->back();
+        return redirect()->back()->with('message', '');
     }
 
     public function getSettings()
@@ -59,23 +60,25 @@ class UserController extends Controller
 
     public function postChangePassword(Request $request)
     {
-
         $this->validate($request, [
-            'curr_pass' => 'required',
-            'new-pass' => 'required',
-            're-new-pass' => 'required',
+            'curr-pass' => 'required',
+            'new-pass' => 'required|min:6|confirmed',
         ]);
-        $id=Auth::User()->id;
-         //Hash::make('test');
 
-        $user = \App\User::find($id);
-        $user->password= bcrypt($request['new-pass']);
-       if($user->save()){
-           return redirect()->back();
-       }
+        $id = Auth::User()->id;
+
+        $user = User::find($id);
+
+        if(Hash::check($request['curr-pass'], $user->password))
+        {
+            $user->password = bcrypt($request['new-pass']);
+            $user->save();
+
+            return redirect()->back()->with('message', 'Password successfully changed!');
+        }
         else
         {
-            return redirect()->back();
+            return redirect()->back()->with('error', 'Current password is incorrect!');
         }
     }
 

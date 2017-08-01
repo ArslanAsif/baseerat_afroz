@@ -17,6 +17,11 @@
                         </div>
                         <div class="x_content">
                             <br />
+                                @if(Session::has('message'))
+                                    <div class="alert alert-success">
+                                        <strong>Success!</strong> {{Session::get('message')}}
+                                    </div>
+                                @endif
                                 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" action="{{ isset($cateData) ? url('admin/category/edit/'.$cateData->id) : url('admin/category/add') }}">
                                     {{ csrf_field() }}
                                     <div class="form-group">

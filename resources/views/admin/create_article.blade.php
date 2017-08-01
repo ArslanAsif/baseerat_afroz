@@ -17,6 +17,12 @@
 
                             @include('admin.includes.errors_article')
 
+                            @if(Session::has('message'))
+                                <div class="alert alert-success">
+                                    <strong>Success!</strong> {{Session::get('message')}}
+                                </div>
+                            @endif
+
                             <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method=post action="{{ isset($news) ?  url('admin/article/edit/'.$news->id): url('article/add') }}">
                                 {{ csrf_field() }}
 
@@ -409,13 +415,4 @@
             }
         });
     </script> -->
-
-    <!--Toastr notification-->
-    <script src="{{ url('toastr/toastr.min.js') }}"></script>
-
-    <script>
-        @if(Session::has('message'))
-            toastr["success"]("Successfully Submitted");
-        @endif
-    </script>
 @endsection

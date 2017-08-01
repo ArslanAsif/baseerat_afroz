@@ -45,7 +45,7 @@ class ArticleController extends Controller
         $news->active = 1;
         $news->update();
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Successfully Approved');
     }
 
     public function postPublishNews($id)
@@ -55,7 +55,7 @@ class ArticleController extends Controller
         $news->active = 1;
         $news->update();
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Successfully Published');
     }
 
     public function postUnpublishNews($id)
@@ -64,7 +64,7 @@ class ArticleController extends Controller
         $news->publish_date = null;
         $news->update();
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Successfully Unpublished');
     }
 
     public function getAddNews()
@@ -83,12 +83,7 @@ class ArticleController extends Controller
                 'category'=>'required',
                 'summary'=>'required',
                 'descr'=>'required',
-                // 'image-data'=>'required_unless:category,Opinion',
-            ], 
-            [
-                'category.required'=>'Category is required',
-                'descr.required'=>'Description is required', 
-                'image-data.required_unless'=>'Image is required for selected category'
+                'image-data'=>'required',
             ]
         );
 
@@ -104,18 +99,6 @@ class ArticleController extends Controller
 
         if(Auth::user()->type == 'admin')
         {
-            $news->priority = $request['priority'];
-
-            if(isset($request['homepage']) && isset($request['headline']) && isset($request['spotlight']))
-            {
-                $checking = Article::where('homepage', 1)->where('spotlight', 1)->where('headline', 1)->get();
-                foreach($checking as $check)
-                {
-                    $check->spotlight = 0;
-                    $check->update();
-                }
-            }
-
             if(isset($request['headline']))
             {
                 $news->headline = 1;
@@ -221,12 +204,7 @@ class ArticleController extends Controller
                 'category'=>'required',
                 'summary'=>'required',
                 'descr'=>'required',
-                // 'image-data'=>'required_unless:category,Opinion',
-            ], 
-            [
-                'category.required'=>'Category is required',
-                'descr.required'=>'Description is required', 
-                'image-data.required_unless'=>'Image is required for selected category'
+                'image-data'=>'required',
             ]
         );
         
@@ -236,12 +214,10 @@ class ArticleController extends Controller
 
         $news->user_id = $request->user()->id;
         $news->title = $request['title'];
-        // $news->type = $request['type'];
         $news->category_id = $request['category'];
         
         $news->summary = $request['summary'];
         $news->description = $request['descr'];
-        $news->priority = $request['priority'];
 
         if(isset($request['headline']))
         {
@@ -313,7 +289,7 @@ class ArticleController extends Controller
         $news = Article::find($id);
         $news->del = 1;
         $news->update();
-        return back();
+        return back()->with('message', 'Successfully Deleted');
     }
 
     public function getRestoreNews($id)
@@ -321,7 +297,7 @@ class ArticleController extends Controller
         $news = Article::find($id);
         $news->del = 0;
         $news->update();
-        return back();
+        return back()->with('message', 'Successfully Restored');
     }
 
     public function getDeleteAllNews()
@@ -331,7 +307,7 @@ class ArticleController extends Controller
         {
             $news->delete();
         }
-        return back();
+        return back()->with('message', 'Successfully Deleted');
     }
 
     public function getTrash()

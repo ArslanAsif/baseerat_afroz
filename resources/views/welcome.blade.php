@@ -10,7 +10,7 @@
                     <div id="example">
                         <ul>
                             @foreach($headlines as $headline)
-                                <li><span style="font-weight: bold">Headlines: </span><a href="{{ url('/article/'.$headline->id) }}">{{ $headline->title }}</a></li>
+                                <li><a href="{{ url('/headlines') }}" style="color: black;"><span style="font-weight: bold">Headlines: </span></a><a href="{{ url('/article/'.$headline->id) }}">{{ $headline->title }}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -157,11 +157,11 @@
                     <div class="widget widget-subscribe gn-animation" data-animation="fadeInUp" data-animation-delay="0" data-animation-offset="75%">
                         <h5 class="widget-title">Baseerat-Afroz Newsetter</h5>
                         <p>Subscribe to our email newsletter for updates.</p>
-                        <form method="post" action="{{url('newsletter/subscribe')}}" id="subscribe-form" data-mailchimp="true">
+                        <form method="post" action="{{url('newsletter/subscribe')}}" id="subscribe-form">
                             {{csrf_field()}}
                             <div id="subscribe-content">
                                 <div class="input">
-                                   <input type="text" id="subscribe-email" name="subscribe-email" placeholder="Email">
+                                   <input type="email" id="subscribe-email" name="subscribe-email" placeholder="Email">
                                 </div>
                                 <div class="button">
                                    <button type="submit" id="subscribe-button" class="" title="Subscribe now">Subscribe</button>

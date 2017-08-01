@@ -117,15 +117,16 @@
                             </ul>
                         </div><!-- /.widget-categories -->
                         <div class="widget widget-subscribe gn-animation" data-animation="fadeInUp" data-animation-delay="0" data-animation-offset="75%">
-                            <h5 class="widget-title">Good News Newsetter</h5>
-                            <p>Subscribe to our email newsletter for good news, sent out every Monday.</p>
-                            <form method="post" action="#" id="subscribe-form" data-mailchimp="true">
+                            <h5 class="widget-title">Baseerat-Afroz Newsetter</h5>
+                            <p>Subscribe to our email newsletter for updates.</p>
+                            <form method="post" action="{{url('newsletter/subscribe')}}" id="subscribe-form">
+                                {{csrf_field()}}
                                 <div id="subscribe-content">
                                     <div class="input">
-                                        <input type="text" id="subscribe-email" name="subscribe-email" placeholder="Email">
+                                        <input type="email" id="subscribe-email" name="subscribe-email" placeholder="Email">
                                     </div>
                                     <div class="button">
-                                        <button type="button" id="subscribe-button" class="" title="Subscribe now">Subscribe</button>
+                                        <button type="submit" id="subscribe-button" class="" title="Subscribe now">Subscribe</button>
                                     </div>
                                 </div>
                                 <div id="subscribe-msg"></div>

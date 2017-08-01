@@ -20,4 +20,12 @@ class Article extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function delete()
+    {
+        if(file_exists('public/images/articles')){
+            @unlink(public_path('public/images/articles'));
+        }
+        parent::delete();
+    }
 }

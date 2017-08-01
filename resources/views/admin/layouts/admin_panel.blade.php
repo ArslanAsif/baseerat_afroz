@@ -104,6 +104,11 @@
 
 @yield('js')
 
+<script>
+    $(".alert").delay(4000).slideUp(200, function() {
+        $(this).alert('close');
+    });
+</script>
 
 </body>
 </html>
