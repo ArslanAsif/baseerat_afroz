@@ -18,6 +18,7 @@
                     <li><a href="{{ url('/admin/article/mysubmission') }}">My Submissions</a></li>
 
                     @if(Auth::user()->type == 'admin' || Auth::user()->type == 'editor')
+                    <li><a href="{{ url('/admin/article/headlines') }}">Headlines</a></li>
                     <li><a href="{{ url('/admin/article/usersubmission') }}">User Submissions</a></li>
                     <li><a href="{{ url('/admin/article/unpublished') }}">Unpublished Articles</a></li>
                     <li><a href="{{ url('/admin/article/published') }}">Published Articles</a></li>

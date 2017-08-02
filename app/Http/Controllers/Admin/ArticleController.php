@@ -316,4 +316,30 @@ class ArticleController extends Controller
 
         return view('admin.manage_article_submissions')->with(['news'=>$articles, 'type' => 'trash']);
     }
+
+    public function getHeadlines()
+    {
+        $headlines = Article::where('headline', 1)->get();
+        $all = Article::where('publish_date', '!=', null)->where('active', 1)->where('del', 0)->where('headline', 0)->get();
+
+        return view('admin.manage_headlines')->with(['news'=> $headlines, 'all' => $all]);
+    }
+
+    public function getAddHeadline(Request $request)
+    {
+        $article = Article::find($request->id);
+
+        $article->headline = 1;
+        $article->update();
+        return back()->with('message', 'Successfully Updated');
+    }
+
+    public function getRemoveHeadline($id)
+    {
+        $article = Article::find($id);
+
+        $article->headline = 0;
+        $article->update();
+        return back()->with('message', 'Successfully Removed');
+    }
 }

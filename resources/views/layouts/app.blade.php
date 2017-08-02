@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-    <title>Good News — News &amp; Magazine Template</title>
+    <title>Baseerat Afroz</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
@@ -46,7 +46,7 @@
     <link href="{{ url('/icon/apple-touch-icon-57-precomposed.png') }}" rel="apple-touch-icon-precomposed">
     <link href="icon/favicon.png" rel="shortcut icon">
 
-    <!--[if lt IE 9]>
+    <!--[if lt IE 9]-->
         <script src="javascript/html5shiv.js"></script>
         <script src="javascript/respond.min.js"></script>
     <![endif]-->
@@ -81,8 +81,8 @@
                     <div class="col-md-6">
                         <div id="logo" class="logo">
                             <a href="{{ url('/') }}" rel="home" title="home">
-                                <img style="border-right: 1px solid grey" width="200px" src="{{ url('/images/logo-eng.png') }}" alt="Baseerat Afroz" />
-                                <img width="150px" src="{{ url('/images/logo-ur.png') }}"/>
+                                <img class="logo-eng" width="200px" src="{{ url('/images/logo-eng.png') }}" alt="Baseerat Afroz" />
+                                <img class="logo-ur" width="150px" src="{{ url('/images/logo-ur.png') }}"/>
                                 <!-- <h2>بسیرت افروز</h2> -->
                             </a>
                         </div>
@@ -182,7 +182,7 @@
                     <div class="col-md-4 gn-animation" data-animation="fadeInUp" data-animation-delay="0" data-animation-offset="75%">
                         <div class="widget widget-brand">
                             <div class="logo logo-footer">
-                                <a href="#"><img style="background-color: red" width="200px" src="{{ url('/images/logo-eng.png') }}" alt="Good News" /></a>
+                                <a href="#"><img style="background-color: red" width="200px" src="{{ url('/images/logo-eng.png') }}" alt="Baseerat Afroz" /></a>
                             </div>
                             <p>Example text</p>
                         </div><!-- /.widget-brand -->
@@ -223,7 +223,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        &copy; 2014 Good News, Inc.
+                        &copy; 2017 Baseerat Afroz
+                        <span style="float: right">Designed by <strong><a href="http://www.quantumbridgeltd.com">Quantum Bridge</a></strong></span>
                     </div><!-- /.col-md-12 -->
                 </div><!-- /.row -->
             </div><!-- /.container -->

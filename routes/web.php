@@ -75,6 +75,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
         Route::post('/publish/{id}', 'ArticleController@postPublishNews');
         Route::post('/unpublish/{id}', 'ArticleController@postUnpublishNews');
         Route::post('/approve/{id}', 'ArticleController@postApproveNews');
+        Route::get('/headlines', 'ArticleController@getHeadlines');
+        Route::post('/headlines/add', 'ArticleController@getAddHeadline');
+        Route::get('/headlines/remove/{id}', 'ArticleController@getRemoveHeadline');
     });
 
     Route::group(['prefix' => 'category'], function() {
