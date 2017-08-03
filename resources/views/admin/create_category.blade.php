@@ -59,7 +59,7 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="priority">Priority <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="number" value="{{ isset($cateData) ? $cateData->priority : '' }}" id="priority" name="priority" required="required" class="form-control col-md-7 col-xs-12">
+                                            <input type="number" min="0" value="{{ isset($cateData) ? $cateData->priority : '' }}" id="priority" name="priority" required="required" class="form-control col-md-7 col-xs-12">
                                         </div>
                                     </div>
 

@@ -224,7 +224,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         &copy; 2017 Baseerat Afroz
-                        <span style="float: right">Designed by <strong><a href="http://www.quantumbridgeltd.com">Quantum Bridge</a></strong></span>
+                        <span style="float: right">Designed by <strong><a target="_blank" href="http://www.quantumbridgeltd.com">Quantum Bridge</a></strong></span>
                     </div><!-- /.col-md-12 -->
                 </div><!-- /.row -->
             </div><!-- /.container -->

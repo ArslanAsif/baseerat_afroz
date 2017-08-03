@@ -23,6 +23,7 @@
                                     <thead>
                                     <tr>
                                         <th>Name</th>
+                                        <th>Priority</th>
                                         {{--<th>Parent</th>--}}
                                         <th>Status</th>
                                         <th>Added On</th>
@@ -35,6 +36,7 @@
                                     @foreach($categories as $category)
                                     <tr>
                                         <td>{{ $category->title_eng."-".$category->title_ur }}</td>
+                                        <td>{{ $category->priority }}</td>
                                         {{--<td>{{ isset($category->parent->id) ? $category->parent->title_eng : '' }}</td>--}}
                                         <td>{{ $category->active ? 'Active' : 'Inactive' }}</td>
                                         <td>{{ $category->created_at }}</td>

@@ -11,6 +11,8 @@
 |
 */
 
+//Website routes
+
 Route::get('/', 'HomeController@getIndex');
 Route::get('/home', 'HomeController@getIndex');
 Route::get('/about', 'HomeController@getAbout');
@@ -19,59 +21,38 @@ Route::post('newsletter/subscribe', 'HomeController@postAddSubscriber');
 Route::post('newsletter/unsubscribe', 'HomeController@postUnsubscribe');
 Route::get('subscriber/confirm/{email}/{token}', 'HomeController@getAddSubscriber');
 
-Auth::routes();
-
 Route::get('/user/{user}', 'HomeController@getUserArticle');
 Route::get('/category/{category}', 'HomeController@getCategory');
 Route::get('/article/{article}', 'HomeController@getArticle');
 Route::post('/search', 'HomeController@postSearch');
 Route::get('/archive/{date}', 'HomeController@getArchive');
 
+//login & register routes
+Auth::routes();
+
+
+//Admin routes for user, editor & admin
 Route::group(['namespace' => 'Admin', 'middleware' => ['auth']], function() {
     Route::get('/settings', 'UserController@getSettings');
     Route::post('/settings/changepassword', 'UserController@postChangePassword');
     Route::post('settings/user/edit/', 'UserController@postEditAboutMe');
 
-    Route::group(['prefix' => 'article'], function() {
+    Route::group(['prefix' => 'admin/article'], function() {
+        Route::get('/add', 'ArticleController@getAddNews');
         Route::post('/add', 'ArticleController@postAddNews');
-        Route::get('/myarticles', 'ArticleController@userArticles');
+        Route::get('/mysubmission', 'ArticleController@getMySubmission');
     });
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth']], function() {
-    
-    Route::group(['prefix' => 'dashboard', 'middleware' => ['admin']], function() {
-        Route::get('/', 'DashboardController@index');
-    });
 
-    Route::get('/article/trash', 'ArticleController@getTrash');
-
-    Route::group(['prefix' => 'homepage'], function () {
-        Route::post('/spotlight', 'HomepageController@postEditSpotlight');
-        Route::post('/highlight', 'HomepageController@postEditHighlight');
-        Route::post('/editorpick', 'HomepageController@postEditeditorpick');
-        Route::post('/category', 'HomepageController@postEditCategory');
-    });
-
-    Route::get('homepage', 'HomepageController@index');
-
-    Route::get('newsletter', 'SubscriberController@getNewsletter');
-    Route::get('newsletter/today', 'SubscriberController@getNewsletterToday');
-    Route::get('newsletter/{id}', 'SubscriberController@getNewsletterFromArticle');
-    Route::post('newsletter', 'SubscriberController@postNewsletter');
-    Route::get('newsletter/send', 'SubscriberController@getSendNewsletter');
-
-    Route::group(['prefix' => 'article'], function() {
+//Admin routes for editor & admin
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['editor_admin']], function() {
+    Route::group(['prefix' => 'article'], function () {
         Route::get('/published', 'ArticleController@index');
         Route::get('/unpublished', 'ArticleController@getUnpublished');
-        Route::get('/mysubmission', 'ArticleController@getMySubmission');
         Route::get('/usersubmission', 'ArticleController@getUserSubmission');
-        Route::get('/add', 'ArticleController@getAddNews');
         Route::get('/edit/{id}', 'ArticleController@getEditNews');
         Route::post('/edit/{id}', 'ArticleController@postEditNews');
-        Route::get('/delete/{id}', 'ArticleController@getDeleteNews');
-        Route::get('/deleteall', 'ArticleController@getDeleteAllNews');
-        Route::get('/recycle/{id}', 'ArticleController@getRestoreNews');
         Route::post('/publish/{id}', 'ArticleController@postPublishNews');
         Route::post('/unpublish/{id}', 'ArticleController@postUnpublishNews');
         Route::post('/approve/{id}', 'ArticleController@postApproveNews');
@@ -80,7 +61,43 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
         Route::get('/headlines/remove/{id}', 'ArticleController@getRemoveHeadline');
     });
 
-    Route::group(['prefix' => 'category'], function() {
+
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/', 'UserController@index');
+        Route::get('/edit/{id}', 'UserController@getEditUser');
+        Route::post('/edit/{id}', 'UserController@postEditUser');
+//        Route::get('/ban/{id}', 'UserController@getbanUser');
+//        Route::get('/active', 'UserController@getActiveUsers');
+//        Route::get('/inactive', 'UserController@getActiveUsers');
+    });
+});
+
+//Only admin accessible
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['admin']], function() {
+    Route::get('/dashboard', 'DashboardController@index');
+
+    Route::group(['prefix' => 'homepage'], function () {
+        Route::get('/', 'HomepageController@index');
+        Route::post('/spotlight', 'HomepageController@postEditSpotlight');
+        Route::post('/highlight', 'HomepageController@postEditHighlight');
+        Route::post('/editorpick', 'HomepageController@postEditeditorpick');
+        Route::post('/category', 'HomepageController@postEditCategory');
+    });
+
+    Route::group(['prefix' => 'article'], function () {
+        Route::get('/delete/{id}', 'ArticleController@getDeleteNews');
+        Route::get('/deleteall', 'ArticleController@getDeleteAllNews');
+        Route::get('/recycle/{id}', 'ArticleController@getRestoreNews');
+        Route::get('/trash', 'ArticleController@getTrash');
+    });
+
+    Route::get('newsletter', 'SubscriberController@getNewsletter');
+    Route::get('newsletter/today', 'SubscriberController@getNewsletterToday');
+    Route::get('newsletter/{id}', 'SubscriberController@getNewsletterFromArticle');
+    Route::post('newsletter', 'SubscriberController@postNewsletter');
+    Route::get('newsletter/send', 'SubscriberController@getSendNewsletter');
+
+    Route::group(['prefix' => 'category'], function () {
         Route::get('/', 'CategoryController@index');
         Route::get('/add', 'CategoryController@getAddCategory');
         Route::post('/add', 'CategoryController@postAddCategory');
@@ -89,13 +106,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
         Route::get('/delete/{id}', 'CategoryController@getDeleteCategory');
     });
 
-    Route::group(['prefix' => 'user'], function() {
-        Route::get('/', 'UserController@index');
-        Route::get('/edit/{id}', 'UserController@getEditUser');
-        Route::post('/edit/{id}', 'UserController@postEditUser');
+    Route::group(['prefix' => 'user'], function () {
         Route::get('/ban/{id}', 'UserController@getbanUser');
-        Route::get('/active', 'UserController@getActiveUsers');
-        Route::get('/inactive', 'UserController@getActiveUsers');
     });
 
     Route::get('/subscriber', 'SubscriberController@index');
